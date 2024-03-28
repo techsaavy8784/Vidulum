@@ -165,7 +165,6 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
-// github.com/confio/ics23/go => github.com/cosmos/cosmos-sdk/ics23/go v0.9.0
 replace (
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
