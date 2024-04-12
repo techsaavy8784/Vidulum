@@ -3,9 +3,10 @@ package types
 import (
 	"testing"
 
+	"vidulum/testutil/sample"
+
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
-	"vidulum/testutil/sample"
 )
 
 func TestMsgBitcoinOwnership_ValidateBasic(t *testing.T) {
@@ -17,13 +18,13 @@ func TestMsgBitcoinOwnership_ValidateBasic(t *testing.T) {
 		{
 			name: "invalid address",
 			msg: MsgBitcoinOwnership{
-				Creator: "invalid_address",
+				Owner: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
 		}, {
 			name: "valid address",
 			msg: MsgBitcoinOwnership{
-				Creator: sample.AccAddress(),
+				Owner: sample.AccAddress(),
 			},
 		},
 	}

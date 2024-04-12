@@ -9,14 +9,12 @@ const TypeMsgBitcoinOwnership = "bitcoin_ownership"
 
 var _ sdk.Msg = &MsgBitcoinOwnership{}
 
-func NewMsgBitcoinOwnership(creator string, address string, signature string, message string, signer string, owner string) *MsgBitcoinOwnership {
+func NewMsgBitcoinOwnership(owner string, address string, signature string, message string) *MsgBitcoinOwnership {
 	return &MsgBitcoinOwnership{
-		Creator:   creator,
+		Owner:     owner,
 		Address:   address,
 		Signature: signature,
 		Message:   message,
-		Signer:    signer,
-		Owner:     owner,
 	}
 }
 
@@ -29,11 +27,11 @@ func (msg *MsgBitcoinOwnership) Type() string {
 }
 
 func (msg *MsgBitcoinOwnership) GetSigners() []sdk.AccAddress {
-	creator, err := sdk.AccAddressFromBech32(msg.Creator)
+	owner, err := sdk.AccAddressFromBech32(msg.Owner)
 	if err != nil {
 		panic(err)
 	}
-	return []sdk.AccAddress{creator}
+	return []sdk.AccAddress{owner}
 }
 
 func (msg *MsgBitcoinOwnership) GetSignBytes() []byte {
@@ -42,7 +40,7 @@ func (msg *MsgBitcoinOwnership) GetSignBytes() []byte {
 }
 
 func (msg *MsgBitcoinOwnership) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.Creator)
+	_, err := sdk.AccAddressFromBech32(msg.Owner)
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
 	}

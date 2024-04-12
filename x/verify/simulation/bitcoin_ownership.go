@@ -3,11 +3,12 @@ package simulation
 import (
 	"math/rand"
 
+	"vidulum/x/verify/keeper"
+	"vidulum/x/verify/types"
+
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	"vidulum/x/verify/keeper"
-	"vidulum/x/verify/types"
 )
 
 func SimulateMsgBitcoinOwnership(
@@ -19,7 +20,7 @@ func SimulateMsgBitcoinOwnership(
 	) (simtypes.OperationMsg, []simtypes.FutureOperation, error) {
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 		msg := &types.MsgBitcoinOwnership{
-			Creator: simAccount.Address.String(),
+			Owner: simAccount.Address.String(),
 		}
 
 		// TODO: Handling the BitcoinOwnership simulation

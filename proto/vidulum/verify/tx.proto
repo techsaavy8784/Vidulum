@@ -9,12 +9,10 @@ service Msg {
   rpc BitcoinOwnership (MsgBitcoinOwnership) returns (MsgBitcoinOwnershipResponse);
 }
 message MsgBitcoinOwnership {
-  string creator   = 1;
+  string owner   = 1;
   string address   = 2;
   string signature = 3;
   string message   = 4;
-  string signer    = 5;
-  string owner     = 6;
 }
 
 message MsgBitcoinOwnershipResponse {bool isVerified = 1;}
