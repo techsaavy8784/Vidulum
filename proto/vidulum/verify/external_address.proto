@@ -1,0 +1,14 @@
+syntax = "proto3";
+package vidulum.verify;
+
+option go_package = "vidulum/x/verify/types";
+
+message ExternalAddress {
+  string vidulum = 1; 
+  string bitcoin = 2; 
+  string ethereum = 3; 
+  string solana = 4; 
+  string zcash = 5; 
+  
+}
+

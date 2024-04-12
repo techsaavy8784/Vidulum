@@ -3,6 +3,7 @@ module vidulum
 go 1.19
 
 require (
+	github.com/bitcoinsv/bsvd v0.0.0-20190609155523-4c29707f7173
 	github.com/cosmos/cosmos-sdk v0.46.15
 	github.com/cosmos/ibc-go/v6 v6.2.1
 	github.com/gogo/protobuf v1.3.3
@@ -10,6 +11,8 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.1
+	github.com/libsv/go-bk v0.1.6
+	github.com/libsv/go-bt/v2 v2.2.5
 	github.com/regen-network/cosmos-proto v0.3.1
 	github.com/spf13/cast v1.5.0
 	github.com/spf13/cobra v1.6.1

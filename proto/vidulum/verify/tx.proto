@@ -1,7 +1,21 @@
 syntax = "proto3";
+
 package vidulum.verify;
 
 option go_package = "vidulum/x/verify/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc BitcoinOwnership (MsgBitcoinOwnership) returns (MsgBitcoinOwnershipResponse);
+}
+message MsgBitcoinOwnership {
+  string creator   = 1;
+  string address   = 2;
+  string signature = 3;
+  string message   = 4;
+  string singeR    = 5;
+  string owner     = 6;
+}
+
+message MsgBitcoinOwnershipResponse {}
+
