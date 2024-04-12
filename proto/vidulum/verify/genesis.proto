@@ -1,0 +1,12 @@
+syntax = "proto3";
+package vidulum.verify;
+
+import "gogoproto/gogo.proto";
+import "vidulum/verify/params.proto";
+
+option go_package = "vidulum/x/verify/types";
+
+// GenesisState defines the verify module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+}

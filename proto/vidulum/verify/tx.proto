@@ -1,0 +1,7 @@
+syntax = "proto3";
+package vidulum.verify;
+
+option go_package = "vidulum/x/verify/types";
+
+// Msg defines the Msg service.
+service Msg {}
