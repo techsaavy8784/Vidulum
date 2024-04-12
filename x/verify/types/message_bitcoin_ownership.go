@@ -9,13 +9,13 @@ const TypeMsgBitcoinOwnership = "bitcoin_ownership"
 
 var _ sdk.Msg = &MsgBitcoinOwnership{}
 
-func NewMsgBitcoinOwnership(creator string, address string, signature string, message string, singeR string, owner string) *MsgBitcoinOwnership {
+func NewMsgBitcoinOwnership(creator string, address string, signature string, message string, signer string, owner string) *MsgBitcoinOwnership {
 	return &MsgBitcoinOwnership{
 		Creator:   creator,
 		Address:   address,
 		Signature: signature,
 		Message:   message,
-		SingeR:    singeR,
+		Signer:    signer,
 		Owner:     owner,
 	}
 }

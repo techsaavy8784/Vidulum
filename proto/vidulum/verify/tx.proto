@@ -13,9 +13,9 @@ message MsgBitcoinOwnership {
   string address   = 2;
   string signature = 3;
   string message   = 4;
-  string singeR    = 5;
+  string signer    = 5;
   string owner     = 6;
 }
 
-message MsgBitcoinOwnershipResponse {}
+message MsgBitcoinOwnershipResponse {bool isVerified = 1;}
 

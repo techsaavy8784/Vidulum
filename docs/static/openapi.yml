@@ -72019,7 +72019,7 @@ definitions:
   vidulum.verify.MsgBitcoinOwnershipResponse:
     type: object
     properties:
-      success:
+      isVerified:
         type: boolean
   vidulum.verify.Params:
     type: object

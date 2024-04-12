@@ -8,7 +8,7 @@ import (
 	"vidulum/x/verify/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	// sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
 	"bytes"
 	"encoding/base64"
@@ -29,32 +29,46 @@ const (
 func (k msgServer) BitcoinOwnership(goCtx context.Context, msg *types.MsgBitcoinOwnership) (*types.MsgBitcoinOwnershipResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// Reconstruct the pubkey
+	// Retrieve the external address for the owner
+	externalAddress, found := k.GetExternalAddress(ctx, msg.Owner)
+	if found && externalAddress.Bitcoin != "" {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "you already own a Bitcoin address")
+	}
+
+	// Reconstruct the public key from the provided signature and message
 	publicKey, wasCompressed, err := k.PubKeyFromSignature(msg.Signature, msg.Message)
 	if err != nil {
-		return nil, err
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "failed to reconstruct public key from signature")
 	}
 
-	// Get the address
-	var bscriptAddress *bscript.Address
-	if bscriptAddress, err = k.GetAddressFromPubKey(publicKey, wasCompressed); err != nil {
-		return nil, err
+	// Get the Bitcoin address corresponding to the public key
+	bscriptAddress, err := k.GetAddressFromPubKey(publicKey, wasCompressed)
+	if err != nil {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "failed to get Bitcoin address from public key")
 	}
 
-	// Return nil if addresses match.
+	// If the provided Bitcoin address matches the one derived from the public key, return true
 	if bscriptAddress.AddressString == msg.Address {
-		return nil, nil
-	}
+		// Set the Bitcoin address in the external address object
+		externalAddress = types.ExternalAddress{
+			Vidulum: msg.Owner,
+			Bitcoin: msg.Address,
+		}
+		k.SetExternalAddress(ctx, externalAddress)
 
-	var ExternalAddress = types.ExternalAddress{
-		Vidulum: msg.Owner,
-		Bitcoin: msg.Address,
+		// Emit an event for the verified Bitcoin address
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(
+				"bitcoin address verified",
+				sdk.NewAttribute("owner", msg.Owner),
+				sdk.NewAttribute("bitcoin_address", msg.Address),
+			),
+		)
+		return &types.MsgBitcoinOwnershipResponse{IsVerified: true}, nil
+	} else {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "failed to verify the ownership of bitcoin address")
 	}
-	k.SetExternalAddress(ctx, ExternalAddress)
-
-	return &types.MsgBitcoinOwnershipResponse{}, nil
 }
-
 func (k Keeper) PubKeyFromSignature(sig, data string) (pubKey *bec.PublicKey, wasCompressed bool, err error) {
 
 	var decodedSig []byte
