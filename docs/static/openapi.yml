@@ -72021,6 +72021,8 @@ definitions:
     properties:
       isVerified:
         type: boolean
+  vidulum.verify.MsgEthereumOwnershipResponse:
+    type: object
   vidulum.verify.MsgSolanaOwnershipResponse:
     type: object
     properties:

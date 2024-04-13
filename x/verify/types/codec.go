@@ -10,6 +10,7 @@ import (
 func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgBitcoinOwnership{}, "verify/BitcoinOwnership", nil)
 	cdc.RegisterConcrete(&MsgSolanaOwnership{}, "verify/SolanaOwnership", nil)
+	cdc.RegisterConcrete(&MsgEthereumOwnership{}, "verify/EthereumOwnership", nil)
 	// this line is used by starport scaffolding # 2
 }
 
@@ -19,6 +20,9 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgSolanaOwnership{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgEthereumOwnership{},
 	)
 	// this line is used by starport scaffolding # 3
 
