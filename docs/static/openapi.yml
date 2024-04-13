@@ -72021,6 +72021,11 @@ definitions:
     properties:
       isVerified:
         type: boolean
+  vidulum.verify.MsgSolanaOwnershipResponse:
+    type: object
+    properties:
+      isVerified:
+        type: boolean
   vidulum.verify.Params:
     type: object
     description: Params defines the parameters for the module.

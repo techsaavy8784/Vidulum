@@ -28,6 +28,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgBitcoinOwnership int = 100
 
+	opWeightMsgSolanaOwnership = "op_weight_msg_solana_ownership"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgSolanaOwnership int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -71,6 +75,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgBitcoinOwnership,
 		verifysimulation.SimulateMsgBitcoinOwnership(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgSolanaOwnership int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgSolanaOwnership, &weightMsgSolanaOwnership, nil,
+		func(_ *rand.Rand) {
+			weightMsgSolanaOwnership = defaultWeightMsgSolanaOwnership
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgSolanaOwnership,
+		verifysimulation.SimulateMsgSolanaOwnership(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation

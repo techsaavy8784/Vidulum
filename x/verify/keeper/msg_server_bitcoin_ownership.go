@@ -30,8 +30,8 @@ func (k msgServer) BitcoinOwnership(goCtx context.Context, msg *types.MsgBitcoin
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// Retrieve the external address for the owner
-	externalAddress, found := k.GetExternalAddress(ctx, msg.Owner)
-	if found && externalAddress.Bitcoin != "" {
+	valFound, isFound := k.GetExternalAddress(ctx, msg.Owner)
+	if isFound && valFound.Bitcoin != "" {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "you already own a Bitcoin address")
 	}
 
@@ -50,9 +50,12 @@ func (k msgServer) BitcoinOwnership(goCtx context.Context, msg *types.MsgBitcoin
 	// If the provided Bitcoin address matches the one derived from the public key, return true
 	if bscriptAddress.AddressString == msg.Address {
 		// Set the Bitcoin address in the external address object
-		externalAddress = types.ExternalAddress{
-			Vidulum: msg.Owner,
-			Bitcoin: msg.Address,
+		var externalAddress = types.ExternalAddress{
+			Vidulum:  msg.Owner,
+			Bitcoin:  msg.Address,
+			Ethereum: valFound.Ethereum,
+			Solana:   valFound.Solana,
+			Zcash:    valFound.Zcash,
 		}
 		k.SetExternalAddress(ctx, externalAddress)
 

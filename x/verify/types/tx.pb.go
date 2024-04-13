@@ -139,15 +139,129 @@ func (m *MsgBitcoinOwnershipResponse) GetIsVerified() bool {
 	return false
 }
 
+type MsgSolanaOwnership struct {
+	Owner     string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	Address   string `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
+	Signature string `protobuf:"bytes,3,opt,name=signature,proto3" json:"signature,omitempty"`
+	Message   string `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`
+}
+
+func (m *MsgSolanaOwnership) Reset()         { *m = MsgSolanaOwnership{} }
+func (m *MsgSolanaOwnership) String() string { return proto.CompactTextString(m) }
+func (*MsgSolanaOwnership) ProtoMessage()    {}
+func (*MsgSolanaOwnership) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00ba60f97589ff26, []int{2}
+}
+func (m *MsgSolanaOwnership) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgSolanaOwnership) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgSolanaOwnership.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgSolanaOwnership) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSolanaOwnership.Merge(m, src)
+}
+func (m *MsgSolanaOwnership) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgSolanaOwnership) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSolanaOwnership.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgSolanaOwnership proto.InternalMessageInfo
+
+func (m *MsgSolanaOwnership) GetOwner() string {
+	if m != nil {
+		return m.Owner
+	}
+	return ""
+}
+
+func (m *MsgSolanaOwnership) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+func (m *MsgSolanaOwnership) GetSignature() string {
+	if m != nil {
+		return m.Signature
+	}
+	return ""
+}
+
+func (m *MsgSolanaOwnership) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
+type MsgSolanaOwnershipResponse struct {
+	IsVerified bool `protobuf:"varint,1,opt,name=isVerified,proto3" json:"isVerified,omitempty"`
+}
+
+func (m *MsgSolanaOwnershipResponse) Reset()         { *m = MsgSolanaOwnershipResponse{} }
+func (m *MsgSolanaOwnershipResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgSolanaOwnershipResponse) ProtoMessage()    {}
+func (*MsgSolanaOwnershipResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00ba60f97589ff26, []int{3}
+}
+func (m *MsgSolanaOwnershipResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgSolanaOwnershipResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgSolanaOwnershipResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgSolanaOwnershipResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSolanaOwnershipResponse.Merge(m, src)
+}
+func (m *MsgSolanaOwnershipResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgSolanaOwnershipResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSolanaOwnershipResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgSolanaOwnershipResponse proto.InternalMessageInfo
+
+func (m *MsgSolanaOwnershipResponse) GetIsVerified() bool {
+	if m != nil {
+		return m.IsVerified
+	}
+	return false
+}
+
 func init() {
 	proto.RegisterType((*MsgBitcoinOwnership)(nil), "vidulum.verify.MsgBitcoinOwnership")
 	proto.RegisterType((*MsgBitcoinOwnershipResponse)(nil), "vidulum.verify.MsgBitcoinOwnershipResponse")
+	proto.RegisterType((*MsgSolanaOwnership)(nil), "vidulum.verify.MsgSolanaOwnership")
+	proto.RegisterType((*MsgSolanaOwnershipResponse)(nil), "vidulum.verify.MsgSolanaOwnershipResponse")
 }
 
 func init() { proto.RegisterFile("vidulum/verify/tx.proto", fileDescriptor_00ba60f97589ff26) }
 
 var fileDescriptor_00ba60f97589ff26 = []byte{
-	// 250 bytes of a gzipped FileDescriptorProto
+	// 293 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2f, 0xcb, 0x4c, 0x29,
 	0xcd, 0x29, 0xcd, 0xd5, 0x2f, 0x4b, 0x2d, 0xca, 0x4c, 0xab, 0xd4, 0x2f, 0xa9, 0xd0, 0x2b, 0x28,
 	0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x83, 0x4a, 0xe8, 0x41, 0x24, 0x94, 0x6a, 0xb9, 0x84, 0x7d, 0x8b,
@@ -158,12 +272,15 @@ var fileDescriptor_00ba60f97589ff26 = []byte{
 	0x83, 0xe5, 0x10, 0x02, 0x20, 0x7d, 0xb9, 0xa9, 0xc5, 0xc5, 0x89, 0xe9, 0xa9, 0x12, 0x2c, 0x10,
 	0x7d, 0x50, 0xae, 0x92, 0x2d, 0x97, 0x34, 0x16, 0xeb, 0x83, 0x52, 0x8b, 0x0b, 0xf2, 0xf3, 0x8a,
 	0x53, 0x85, 0xe4, 0xb8, 0xb8, 0x32, 0x8b, 0xc3, 0x40, 0x2e, 0xcd, 0x4c, 0x4d, 0x01, 0xbb, 0x85,
-	0x23, 0x08, 0x49, 0xc4, 0x28, 0x9b, 0x8b, 0xd9, 0xb7, 0x38, 0x5d, 0x28, 0x85, 0x4b, 0x00, 0xc3,
-	0x07, 0xca, 0x7a, 0xa8, 0x3e, 0xd5, 0xc3, 0x62, 0x8f, 0x94, 0x36, 0x11, 0x8a, 0x60, 0x8e, 0x71,
-	0x32, 0x38, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6, 0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c,
-	0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6, 0x63, 0x39, 0x86, 0x28, 0x31, 0x58, 0x68, 0x57,
-	0xc0, 0xc3, 0xbb, 0xb2, 0x20, 0xb5, 0x38, 0x89, 0x0d, 0x1c, 0xe6, 0xc6, 0x80, 0x00, 0x00, 0x00,
-	0xff, 0xff, 0x31, 0xab, 0x94, 0xbb, 0x8e, 0x01, 0x00, 0x00,
+	0x23, 0x08, 0x49, 0x44, 0xa9, 0x86, 0x4b, 0xc8, 0xb7, 0x38, 0x3d, 0x38, 0x3f, 0x27, 0x31, 0x2f,
+	0x91, 0xfe, 0x8e, 0xb7, 0xe1, 0x92, 0xc2, 0xb4, 0x9d, 0x58, 0xb7, 0x1b, 0x9d, 0x63, 0xe4, 0x62,
+	0xf6, 0x2d, 0x4e, 0x17, 0x4a, 0xe1, 0x12, 0xc0, 0x08, 0x7e, 0x65, 0x3d, 0xd4, 0x68, 0xd2, 0xc3,
+	0x12, 0x48, 0x52, 0xda, 0x44, 0x28, 0x82, 0xbb, 0x26, 0x91, 0x8b, 0x1f, 0x3d, 0x98, 0x94, 0xb0,
+	0xe8, 0x47, 0x53, 0x23, 0xa5, 0x45, 0x58, 0x0d, 0xcc, 0x0a, 0x27, 0x83, 0x13, 0x8f, 0xe4, 0x18,
+	0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0, 0x48, 0x8e, 0x71, 0xc2, 0x63, 0x39, 0x86, 0x0b, 0x8f, 0xe5,
+	0x18, 0x6e, 0x3c, 0x96, 0x63, 0x88, 0x12, 0x83, 0xa5, 0xc6, 0x0a, 0x78, 0x7a, 0xac, 0x2c, 0x48,
+	0x2d, 0x4e, 0x62, 0x03, 0xa7, 0x49, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xf6, 0x81, 0xbe,
+	0x07, 0xae, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -179,6 +296,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MsgClient interface {
 	BitcoinOwnership(ctx context.Context, in *MsgBitcoinOwnership, opts ...grpc.CallOption) (*MsgBitcoinOwnershipResponse, error)
+	SolanaOwnership(ctx context.Context, in *MsgSolanaOwnership, opts ...grpc.CallOption) (*MsgSolanaOwnershipResponse, error)
 }
 
 type msgClient struct {
@@ -198,9 +316,19 @@ func (c *msgClient) BitcoinOwnership(ctx context.Context, in *MsgBitcoinOwnershi
 	return out, nil
 }
 
+func (c *msgClient) SolanaOwnership(ctx context.Context, in *MsgSolanaOwnership, opts ...grpc.CallOption) (*MsgSolanaOwnershipResponse, error) {
+	out := new(MsgSolanaOwnershipResponse)
+	err := c.cc.Invoke(ctx, "/vidulum.verify.Msg/SolanaOwnership", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	BitcoinOwnership(context.Context, *MsgBitcoinOwnership) (*MsgBitcoinOwnershipResponse, error)
+	SolanaOwnership(context.Context, *MsgSolanaOwnership) (*MsgSolanaOwnershipResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -209,6 +337,9 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) BitcoinOwnership(ctx context.Context, req *MsgBitcoinOwnership) (*MsgBitcoinOwnershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BitcoinOwnership not implemented")
+}
+func (*UnimplementedMsgServer) SolanaOwnership(ctx context.Context, req *MsgSolanaOwnership) (*MsgSolanaOwnershipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SolanaOwnership not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -233,6 +364,24 @@ func _Msg_BitcoinOwnership_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_SolanaOwnership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSolanaOwnership)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).SolanaOwnership(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/vidulum.verify.Msg/SolanaOwnership",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).SolanaOwnership(ctx, req.(*MsgSolanaOwnership))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "vidulum.verify.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -240,6 +389,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BitcoinOwnership",
 			Handler:    _Msg_BitcoinOwnership_Handler,
+		},
+		{
+			MethodName: "SolanaOwnership",
+			Handler:    _Msg_SolanaOwnership_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -330,6 +483,90 @@ func (m *MsgBitcoinOwnershipResponse) MarshalToSizedBuffer(dAtA []byte) (int, er
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgSolanaOwnership) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgSolanaOwnership) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgSolanaOwnership) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Message) > 0 {
+		i -= len(m.Message)
+		copy(dAtA[i:], m.Message)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Message)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Signature) > 0 {
+		i -= len(m.Signature)
+		copy(dAtA[i:], m.Signature)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Signature)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Address) > 0 {
+		i -= len(m.Address)
+		copy(dAtA[i:], m.Address)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Address)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Owner) > 0 {
+		i -= len(m.Owner)
+		copy(dAtA[i:], m.Owner)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Owner)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgSolanaOwnershipResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgSolanaOwnershipResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgSolanaOwnershipResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.IsVerified {
+		i--
+		if m.IsVerified {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -367,6 +604,43 @@ func (m *MsgBitcoinOwnership) Size() (n int) {
 }
 
 func (m *MsgBitcoinOwnershipResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.IsVerified {
+		n += 2
+	}
+	return n
+}
+
+func (m *MsgSolanaOwnership) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Owner)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Address)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Signature)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Message)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgSolanaOwnershipResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -589,6 +863,254 @@ func (m *MsgBitcoinOwnershipResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgBitcoinOwnershipResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsVerified", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IsVerified = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgSolanaOwnership) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgSolanaOwnership: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgSolanaOwnership: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Owner", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Owner = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Address = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Signature", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Signature = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Message", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Message = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgSolanaOwnershipResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgSolanaOwnershipResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgSolanaOwnershipResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
