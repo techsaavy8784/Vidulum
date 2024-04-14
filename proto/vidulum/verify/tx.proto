@@ -39,5 +39,7 @@ message MsgEthereumOwnership {
   string message   = 4;
 }
 
-message MsgEthereumOwnershipResponse {}
+message MsgEthereumOwnershipResponse {
+  bool isVerified = 1;
+}
 

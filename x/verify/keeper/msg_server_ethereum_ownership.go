@@ -54,7 +54,7 @@ func (k msgServer) EthereumOwnership(goCtx context.Context, msg *types.MsgEthere
 				sdk.NewAttribute("ethereum_address", msg.Address),
 			),
 		)
-		return &types.MsgEthereumOwnershipResponse{}, nil
+		return &types.MsgEthereumOwnershipResponse{IsVerified: true}, nil
 	} else {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "failed to verify the ownership of ethereum address")
 	}
