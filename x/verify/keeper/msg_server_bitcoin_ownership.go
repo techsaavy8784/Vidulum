@@ -38,13 +38,13 @@ func (k msgServer) BitcoinOwnership(goCtx context.Context, msg *types.MsgBitcoin
 	// Reconstruct the public key from the provided signature and message
 	publicKey, wasCompressed, err := k.PubKeyFromSignature(msg.Signature, msg.Message)
 	if err != nil {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "failed to reconstruct public key from signature")
+		return nil, sdkerrors.Wrap(types.ErrReconstructPubKey, "failed to reconstruct public key from signature")
 	}
 
 	// Get the Bitcoin address corresponding to the public key
 	bscriptAddress, err := k.GetAddressFromPubKey(publicKey, wasCompressed)
 	if err != nil {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "failed to get Bitcoin address from public key")
+		return nil, sdkerrors.Wrap(types.ErrGetBitcoinAddress, "failed to get Bitcoin address from public key")
 	}
 
 	// If the provided Bitcoin address matches the one derived from the public key, return true
@@ -69,7 +69,7 @@ func (k msgServer) BitcoinOwnership(goCtx context.Context, msg *types.MsgBitcoin
 		)
 		return &types.MsgBitcoinOwnershipResponse{IsVerified: true}, nil
 	} else {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "failed to verify the ownership of bitcoin address")
+		return nil, sdkerrors.Wrap(types.ErrVerifyAddress, "failed to verify the ownership of bitcoin address")
 	}
 }
 func (k Keeper) PubKeyFromSignature(sig, data string) (pubKey *bec.PublicKey, wasCompressed bool, err error) {

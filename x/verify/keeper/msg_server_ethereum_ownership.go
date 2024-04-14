@@ -29,7 +29,7 @@ func (k msgServer) EthereumOwnership(goCtx context.Context, msg *types.MsgEthere
 
 	recovered, err := crypto.SigToPub(msgHash, sig)
 	if err != nil {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "failed to verify the ownership of ethereum address")
+		return nil, sdkerrors.Wrap(types.ErrRecoveredAddress, "failed to recover ECDSA of address")
 	}
 
 	recoveredAddr := crypto.PubkeyToAddress(*recovered)
@@ -56,6 +56,6 @@ func (k msgServer) EthereumOwnership(goCtx context.Context, msg *types.MsgEthere
 		)
 		return &types.MsgEthereumOwnershipResponse{IsVerified: true}, nil
 	} else {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "failed to verify the ownership of ethereum address")
+		return nil, sdkerrors.Wrap(types.ErrVerifyAddress, "failed to verify the ownership of ethereum address")
 	}
 }

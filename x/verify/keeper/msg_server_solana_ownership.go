@@ -23,13 +23,13 @@ func (k msgServer) SolanaOwnership(goCtx context.Context, msg *types.MsgSolanaOw
 	// Decode Solana address from base58
 	decodedAddress, err := base58.Decode(msg.Address)
 	if err != nil {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, "failed to decode Solana address")
+		return nil, sdkerrors.Wrap(types.ErrDecodeAddress, "failed to decode Solana address")
 	}
 
 	// Decode Solana signature from base58
 	decodedSignature, err := base58.Decode(msg.Signature)
 	if err != nil {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, "failed to decode Solana sinature")
+		return nil, sdkerrors.Wrap(types.ErrDecodeSignature, "failed to decode Solana sinature")
 	}
 
 	// Verify Solana signature
@@ -51,6 +51,6 @@ func (k msgServer) SolanaOwnership(goCtx context.Context, msg *types.MsgSolanaOw
 		))
 		return &types.MsgSolanaOwnershipResponse{IsVerified: true}, nil
 	} else {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, "failed to verify Solana address")
+		return nil, sdkerrors.Wrap(types.ErrVerifyAddress, "failed to verify Solana address")
 	}
 }
