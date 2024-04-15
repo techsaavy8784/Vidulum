@@ -13,6 +13,6 @@ var (
 	ErrGetBitcoinAddress = sdkerrors.Register(ModuleName, 3, "failed to get bitcoin address")
 	ErrRecoveredAddress  = sdkerrors.Register(ModuleName, 4, "failed to recover ECDSA of address")
 	ErrDecodeAddress     = sdkerrors.Register(ModuleName, 5, "failed to decode address")
-	ErrDecodeSignature   = sdkerrors.Register(ModuleName, 5, "failed to decode signature")
-	ErrVerifyAddress     = sdkerrors.Register(ModuleName, 6, "failed to verify address")
+	ErrDecodeSignature   = sdkerrors.Register(ModuleName, 6, "failed to decode signature")
+	ErrVerifyAddress     = sdkerrors.Register(ModuleName, 7, "failed to verify address")
 )
