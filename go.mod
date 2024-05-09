@@ -3,12 +3,18 @@ module vidulum
 go 1.19
 
 require (
+	github.com/bitcoinsv/bsvd v0.0.0-20190609155523-4c29707f7173
 	github.com/cosmos/cosmos-sdk v0.46.15
 	github.com/cosmos/ibc-go/v6 v6.2.1
+	github.com/ethereum/go-ethereum v1.10.17
+	github.com/gogo/protobuf v1.3.3
 	github.com/golang/protobuf v1.5.4
 	github.com/gorilla/mux v1.8.0
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.1
+	github.com/libsv/go-bk v0.1.6
+	github.com/libsv/go-bt/v2 v2.2.5
+	github.com/mr-tron/base58 v1.2.0
 	github.com/regen-network/cosmos-proto v0.3.1
 	github.com/spf13/cast v1.5.0
 	github.com/spf13/cobra v1.6.1
@@ -16,6 +22,9 @@ require (
 	github.com/stretchr/testify v1.8.4
 	github.com/tendermint/tendermint v0.34.29
 	github.com/tendermint/tm-db v0.6.7
+	google.golang.org/genproto/googleapis/api v0.0.0-20240125205218-1f4bbc51befe
+	google.golang.org/grpc v1.61.0
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
@@ -71,7 +80,6 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/godbus/dbus v0.0.0-20190726142602-4481cbc300e2 // indirect
 	github.com/gogo/gateway v1.1.0 // indirect
-	github.com/gogo/protobuf v1.3.3 // indirect
 	github.com/golang/glog v1.1.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/snappy v0.0.4 // indirect
@@ -154,12 +162,9 @@ require (
 	google.golang.org/api v0.149.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/genproto v0.0.0-20240116215550-a9fa1716bcac // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240125205218-1f4bbc51befe // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240125205218-1f4bbc51befe // indirect
-	google.golang.org/grpc v1.61.0 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	nhooyr.io/websocket v1.8.6 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect

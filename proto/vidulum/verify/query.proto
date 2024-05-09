@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package vidulum.verify;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "vidulum/verify/params.proto";
+import "vidulum/verify/external_address.proto";
+
+option go_package = "vidulum/x/verify/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/vidulum/verify/params";
+  
+  }
+  
+  // Queries a list of ExternalAddress items.
+  rpc ExternalAddress    (QueryGetExternalAddressRequest) returns (QueryGetExternalAddressResponse) {
+    option (google.api.http).get = "/vidulum/verify/external_address/{vidulum}";
+  
+  }
+  rpc ExternalAddressAll (QueryAllExternalAddressRequest) returns (QueryAllExternalAddressResponse) {
+    option (google.api.http).get = "/vidulum/verify/external_address";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetExternalAddressRequest {
+  string vidulum = 1;
+}
+
+message QueryGetExternalAddressResponse {
+  ExternalAddress externalAddress = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllExternalAddressRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllExternalAddressResponse {
+  repeated ExternalAddress                        externalAddress = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination      = 2;
+}
+

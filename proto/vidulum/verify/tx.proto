@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package vidulum.verify;
+
+option go_package = "vidulum/x/verify/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc BitcoinOwnership  (MsgBitcoinOwnership ) returns (MsgBitcoinOwnershipResponse );
+  rpc SolanaOwnership   (MsgSolanaOwnership  ) returns (MsgSolanaOwnershipResponse  );
+  rpc EthereumOwnership (MsgEthereumOwnership) returns (MsgEthereumOwnershipResponse);
+}
+message MsgBitcoinOwnership {
+  string owner     = 1;
+  string address   = 2;
+  string signature = 3;
+  string message   = 4;
+}
+
+message MsgBitcoinOwnershipResponse {
+  bool isVerified = 1;
+}
+
+message MsgSolanaOwnership {
+  string owner     = 1;
+  string address   = 2;
+  string signature = 3;
+  string message   = 4;
+}
+
+message MsgSolanaOwnershipResponse {
+  bool isVerified = 1;
+}
+
+message MsgEthereumOwnership {
+  string owner     = 1;
+  string address   = 2;
+  string signature = 3;
+  string message   = 4;
+}
+
+message MsgEthereumOwnershipResponse {
+  bool isVerified = 1;
+}
+
